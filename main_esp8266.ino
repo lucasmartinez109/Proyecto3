@@ -4,7 +4,7 @@
 #include <ArduinoJson.h>
 #include <time.h>
 #include "secrets.h"
-#define TIME_ZONE -5
+#define TIME_ZONE -3
  
  
 float h = 0;
@@ -133,14 +133,15 @@ void loop()
   Serial.print(F("%  Temperature: "));
   Serial.print(t);
   Serial.println(F("°C "));
-  delay(2000);
- 
+  delay(4000);
+  publishMessage();
   now = time(nullptr);
  
   if (!client.connected())
   {
     connectAWS();
   }
+  /*
   else
   {
     client.loop();
@@ -150,4 +151,5 @@ void loop()
       publishMessage();
     }
   }
+  */
 }
