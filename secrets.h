@@ -7,7 +7,7 @@ const char WIFI_PASSWORD[] = "juanfrapm";           //0544287380
  
 #define THINGNAME "esp_8266"
  
-int8_t TIME_ZONE = -5; //NYC(USA): -5 UTC
+int8_t TIME_ZONE = -3; //NYC(USA): -5 UTC
  
 const char MQTT_HOST[] = "a11v845s8l1ki7-ats.iot.us-east-2.amazonaws.com";
  
