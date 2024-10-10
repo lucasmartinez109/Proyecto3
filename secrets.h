@@ -1,14 +1,18 @@
 #include <pgmspace.h>
  
 #define SECRET
-#define THINGNAME "esp_8266"                         //change this
  
-const char WIFI_SSID[] = "juanfra";               //change this
-const char WIFI_PASSWORD[] = "juanfrapm";           //change this
-const char AWS_IOT_ENDPOINT[] = "a11v845s8l1ki7-ats.iot.us-east-2.amazonaws.com";       //change this
+const char WIFI_SSID[] = "juanfra";               //TAMIM2.4G
+const char WIFI_PASSWORD[] = "juanfrapm";           //0544287380
  
-// Amazon Root CA 1
-static const char AWS_CERT_CA[] PROGMEM = R"EOF(
+#define THINGNAME "esp_8266"
+ 
+int8_t TIME_ZONE = -5; //NYC(USA): -5 UTC
+ 
+const char MQTT_HOST[] = "a11v845s8l1ki7-ats.iot.us-east-2.amazonaws.com";
+ 
+ 
+static const char cacert[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
 MIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF
 ADA5MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6
@@ -31,8 +35,9 @@ rqXRfboQnoZsG4q5WTP468SQvvG5
 -----END CERTIFICATE-----
 )EOF";
  
-// Device Certificate                                               //change this
-static const char AWS_CERT_CRT[] PROGMEM = R"KEY(
+ 
+// Copy contents from XXXXXXXX-certificate.pem.crt here ▼
+static const char client_cert[] PROGMEM = R"KEY(
 -----BEGIN CERTIFICATE-----
 MIIDWTCCAkGgAwIBAgIUeh+b0OxhEU6N+ZQrylm8bk85eXswDQYJKoZIhvcNAQEL
 BQAwTTFLMEkGA1UECwxCQW1hem9uIFdlYiBTZXJ2aWNlcyBPPUFtYXpvbi5jb20g
@@ -53,13 +58,12 @@ r4PnuUcuV1DUndQb9EmScCm+t5byteTAKWAGtjTQfWk73pLQO2ynj0LStNrZxeFa
 g42Jf/WojqyMLJKT6rzgZ7DOjZs2A4/OS95nujjluDSU5rgMihXOWXJD9m2yt+kS
 0XInidsKKlUwPxG4o1s4kRGoulIcmCR4ZJze/woA+FsNiOmxICtkoZe/6urj
 -----END CERTIFICATE-----
-
- 
  
 )KEY";
  
-// Device Private Key                                               //change this
-static const char AWS_CERT_PRIVATE[] PROGMEM = R"KEY(
+ 
+// Copy contents from  XXXXXXXX-private.pem.key here ▼
+static const char privkey[] PROGMEM = R"KEY(
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAupoRPqf8Kd3nkC9G1C2qsavpZsuyaLSDnoypRa5zwhwL/MwS
 /+iuGkM/SHE7qZe6YM95OZHVNS1I32nUJ17col6lFlfsPORZ9ghNDunvm9UjCE3t
@@ -87,7 +91,5 @@ kZv6goUCgYBAUnB3G+5IF550mxzCf1qdwYulA+cOAr0F9oHRwwhol8Q2A04Kvd8n
 mKNg7K9xYZH9OiH7WpJUK9YgUhhby18Yoyu32k18EHR0Sk3HYHUDFxBoPvtH54o1
 tUhLbkfkJodngg3g/fsWqPaKFbhPTjDUJf2dpkFctkXJ3CPODuvlWQ==
 -----END RSA PRIVATE KEY-----
-
- 
  
 )KEY";
