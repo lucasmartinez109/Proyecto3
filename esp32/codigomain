@@ -4,8 +4,8 @@
 #include <ArduinoJson.h>
 #include "WiFi.h"
 
-#define AWS_IOT_PUBLISH_TOPIC   "esp32/pub"
-#define AWS_IOT_SUBSCRIBE_TOPIC "esp32/sub"
+#define AWS_IOT_PUBLISH_TOPIC   "ESP32/pub"
+#define AWS_IOT_SUBSCRIBE_TOPIC "ESP32/sub"
  
 float h = 0;
 float t = 0;
